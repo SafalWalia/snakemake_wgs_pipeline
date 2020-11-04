@@ -1,0 +1,80 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 64
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	2	apply_bqsr
+	2	bqsr
+	2	depth
+	2	fastqc
+	2	haplotype_caller
+	2	mark_dup
+	2	samtools_index
+	2	samtools_sort
+	2	stats
+	19
+
+[Wed Nov  4 01:00:23 2020]
+rule fastqc:
+    input: files/sonpaired_S3_R1_001.fastq, files/sonpaired_S3_R2_001.fastq
+    output: result/fastqc/sonpaired_S3_R1_001_fastqc.html, result/fastqc/sonpaired_S3_R2_001_fastqc.html
+    jobid: 2
+    wildcards: sample=sonpaired_S3
+
+
+[Wed Nov  4 01:00:23 2020]
+rule samtools_sort:
+    input: result/alignment/sonpaired_S3_mapped.bam
+    output: result/alignment/sonpaired_S3.bam
+    log: logs/samtools_sort/sonpaired_S3.log
+    jobid: 11
+    wildcards: sample=sonpaired_S3
+    threads: 4
+
+
+[Wed Nov  4 01:00:23 2020]
+rule fastqc:
+    input: files/motherpaired_S2_R1_001.fastq, files/motherpaired_S2_R2_001.fastq
+    output: result/fastqc/motherpaired_S2_R1_001_fastqc.html, result/fastqc/motherpaired_S2_R2_001_fastqc.html
+    jobid: 1
+    wildcards: sample=motherpaired_S2
+
+
+[Wed Nov  4 01:00:23 2020]
+rule samtools_sort:
+    input: result/alignment/motherpaired_S2_mapped.bam
+    output: result/alignment/motherpaired_S2.bam
+    log: logs/samtools_sort/motherpaired_S2.log
+    jobid: 9
+    wildcards: sample=motherpaired_S2
+    threads: 4
+
+[Wed Nov  4 01:00:23 2020]
+Error in rule fastqc:
+    jobid: 2
+    output: result/fastqc/sonpaired_S3_R1_001_fastqc.html, result/fastqc/sonpaired_S3_R2_001_fastqc.html
+    shell:
+        fastqc -o fastqc files/sonpaired_S3_R1_001.fastq files/sonpaired_S3_R2_001.fastq
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing temporary output file result/alignment/sonpaired_S3_mapped.bam.
+[Wed Nov  4 01:00:23 2020]
+Finished job 11.
+1 of 19 steps (5%) done
+[Wed Nov  4 01:00:23 2020]
+Error in rule fastqc:
+    jobid: 1
+    output: result/fastqc/motherpaired_S2_R1_001_fastqc.html, result/fastqc/motherpaired_S2_R2_001_fastqc.html
+    shell:
+        fastqc -o fastqc files/motherpaired_S2_R1_001.fastq files/motherpaired_S2_R2_001.fastq
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing temporary output file result/alignment/motherpaired_S2_mapped.bam.
+[Wed Nov  4 01:00:23 2020]
+Finished job 9.
+2 of 19 steps (11%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /userdata/safal/tutorial/pipeline/new/.snakemake/log/2020-11-04T010023.367743.snakemake.log

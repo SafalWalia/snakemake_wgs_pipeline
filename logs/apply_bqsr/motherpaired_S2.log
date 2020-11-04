@@ -1,0 +1,49 @@
+01:45:36.331 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/software/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+Nov 04, 2020 1:45:38 AM shaded.cloud_nio.com.google.auth.oauth2.ComputeEngineCredentials runningOnComputeEngine
+INFO: Failed to detect whether we are running on Google Compute Engine.
+01:45:38.102 INFO  ApplyBQSR - ------------------------------------------------------------
+01:45:38.102 INFO  ApplyBQSR - The Genome Analysis Toolkit (GATK) v4.1.2.0
+01:45:38.102 INFO  ApplyBQSR - For support and documentation go to https://software.broadinstitute.org/gatk/
+01:45:38.102 INFO  ApplyBQSR - Executing as safal@headnode.public on Linux v3.10.0-693.5.2.el7.x86_64 amd64
+01:45:38.103 INFO  ApplyBQSR - Java runtime: OpenJDK 64-Bit Server VM v1.8.0_265-b11
+01:45:38.103 INFO  ApplyBQSR - Start Date/Time: November 4, 2020 1:45:36 AM IST
+01:45:38.103 INFO  ApplyBQSR - ------------------------------------------------------------
+01:45:38.103 INFO  ApplyBQSR - ------------------------------------------------------------
+01:45:38.104 INFO  ApplyBQSR - HTSJDK Version: 2.19.0
+01:45:38.104 INFO  ApplyBQSR - Picard Version: 2.19.0
+01:45:38.104 INFO  ApplyBQSR - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+01:45:38.104 INFO  ApplyBQSR - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+01:45:38.104 INFO  ApplyBQSR - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+01:45:38.104 INFO  ApplyBQSR - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+01:45:38.104 INFO  ApplyBQSR - Deflater: IntelDeflater
+01:45:38.104 INFO  ApplyBQSR - Inflater: IntelInflater
+01:45:38.104 INFO  ApplyBQSR - GCS max retries/reopens: 20
+01:45:38.104 INFO  ApplyBQSR - Requester pays: disabled
+01:45:38.104 INFO  ApplyBQSR - Initializing engine
+WARNING: BAM index file /userdata/safal/tutorial/pipeline/new/result/mark_duplicates/motherpaired_S2.bai is older than BAM /userdata/safal/tutorial/pipeline/new/result/mark_duplicates/motherpaired_S2.bam
+01:45:38.409 INFO  ApplyBQSR - Done initializing engine
+01:45:38.429 INFO  ProgressMeter - Starting traversal
+01:45:38.429 INFO  ProgressMeter -        Current Locus  Elapsed Minutes       Reads Processed     Reads/Minute
+01:45:38.772 INFO  ApplyBQSR - No reads filtered by: WellformedReadFilter
+01:45:38.773 INFO  ProgressMeter -             unmapped              0.0                  1213         212186.6
+01:45:38.773 INFO  ProgressMeter - Traversal complete. Processed 1213 total reads in 0.0 minutes.
+01:45:38.842 INFO  ApplyBQSR - Shutting down engine
+[November 4, 2020 1:45:38 AM IST] org.broadinstitute.hellbender.tools.walkers.bqsr.ApplyBQSR done. Elapsed time: 0.04 minutes.
+Runtime.totalMemory()=2131755008
+/software/gatk-4.1.2.0/gatk:80: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if len(args) is 0 or (len(args) is 1 and (args[0] == "--help" or args[0] == "-h")):
+/software/gatk-4.1.2.0/gatk:80: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if len(args) is 0 or (len(args) is 1 and (args[0] == "--help" or args[0] == "-h")):
+/software/gatk-4.1.2.0/gatk:117: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if len(args) is 1 and args[0] == "--list":
+/software/gatk-4.1.2.0/gatk:308: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if call(["gsutil", "-q", "stat", gcsjar]) is 0:
+/software/gatk-4.1.2.0/gatk:312: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if call(["gsutil", "cp", jar, gcsjar]) is 0:
+/software/gatk-4.1.2.0/gatk:467: SyntaxWarning: "is not" with a literal. Did you mean "!="?
+  if not len(properties) is 0:
+/software/gatk-4.1.2.0/gatk:471: SyntaxWarning: "is not" with a literal. Did you mean "!="?
+  if not len(filesToAdd) is 0:
+Using GATK jar /software/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx50G -jar /software/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar ApplyBQSR -R /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa -I result/mark_duplicates/motherpaired_S2.bam -OBI true --bqsr-recal-file result/bqsr/motherpaired_S2_recal.table -O result/bqsr/motherpaired_S2_bqsr_output.bam

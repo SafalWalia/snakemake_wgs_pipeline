@@ -1,0 +1,201 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 64
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	2	apply_bqsr
+	2	bqsr
+	2	bwa_map
+	2	haplotype_caller
+	2	mark_dup
+	2	samtools_index
+	2	samtools_sort
+	15
+
+[Tue Nov  3 14:47:18 2020]
+rule bwa_map:
+    input: /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa, /userdata/safal/tutorial/pipeline/files/sonpaired_S3_R1_001.fastq, /userdata/safal/tutorial/pipeline/files/sonpaired_S3_R2_001.fastq
+    output: alignment/sonpaired_S3_mapped.bam
+    log: logs/bwa_mem/sonpaired_S3.log
+    jobid: 14
+    wildcards: sample=sonpaired_S3
+    threads: 28
+
+
+[Tue Nov  3 14:47:18 2020]
+rule bwa_map:
+    input: /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa, /userdata/safal/tutorial/pipeline/files/motherpaired_S2_R1_001.fastq, /userdata/safal/tutorial/pipeline/files/motherpaired_S2_R2_001.fastq
+    output: alignment/motherpaired_S2_mapped.bam
+    log: logs/bwa_mem/motherpaired_S2.log
+    jobid: 13
+    wildcards: sample=motherpaired_S2
+    threads: 28
+
+[Tue Nov  3 14:47:23 2020]
+Finished job 13.
+1 of 15 steps (7%) done
+
+[Tue Nov  3 14:47:23 2020]
+rule samtools_sort:
+    input: alignment/motherpaired_S2_mapped.bam
+    output: alignment/motherpaired_S2.bam
+    log: logs/samtools_sort/motherpaired_S2.log
+    jobid: 9
+    wildcards: sample=motherpaired_S2
+    threads: 4
+
+Removing temporary output file alignment/motherpaired_S2_mapped.bam.
+[Tue Nov  3 14:47:23 2020]
+Finished job 9.
+2 of 15 steps (13%) done
+
+[Tue Nov  3 14:47:23 2020]
+rule samtools_index:
+    input: alignment/motherpaired_S2.bam
+    output: alignment/motherpaired_S2.bam.bai
+    log: logs/samtools_index/motherpaired_S2.log
+    jobid: 10
+    wildcards: sample=motherpaired_S2
+    threads: 4
+
+[Tue Nov  3 14:47:23 2020]
+Finished job 10.
+3 of 15 steps (20%) done
+[Tue Nov  3 14:47:23 2020]
+Finished job 14.
+4 of 15 steps (27%) done
+
+[Tue Nov  3 14:47:23 2020]
+rule mark_dup:
+    input: alignment/motherpaired_S2.bam, alignment/motherpaired_S2.bam.bai
+    output: mark_duplicates/motherpaired_S2.bam, mark_duplicates/motherpaired_S2_metrics.txt
+    log: logs/mark_dup/motherpaired_S2.log
+    jobid: 5
+    wildcards: sample=motherpaired_S2
+
+
+[Tue Nov  3 14:47:23 2020]
+rule samtools_sort:
+    input: alignment/sonpaired_S3_mapped.bam
+    output: alignment/sonpaired_S3.bam
+    log: logs/samtools_sort/sonpaired_S3.log
+    jobid: 11
+    wildcards: sample=sonpaired_S3
+    threads: 4
+
+Removing temporary output file alignment/sonpaired_S3_mapped.bam.
+[Tue Nov  3 14:47:23 2020]
+Finished job 11.
+5 of 15 steps (33%) done
+
+[Tue Nov  3 14:47:23 2020]
+rule samtools_index:
+    input: alignment/sonpaired_S3.bam
+    output: alignment/sonpaired_S3.bam.bai
+    log: logs/samtools_index/sonpaired_S3.log
+    jobid: 12
+    wildcards: sample=sonpaired_S3
+    threads: 4
+
+[Tue Nov  3 14:47:23 2020]
+Finished job 12.
+6 of 15 steps (40%) done
+
+[Tue Nov  3 14:47:23 2020]
+rule mark_dup:
+    input: alignment/sonpaired_S3.bam, alignment/sonpaired_S3.bam.bai
+    output: mark_duplicates/sonpaired_S3.bam, mark_duplicates/sonpaired_S3_metrics.txt
+    log: logs/mark_dup/sonpaired_S3.log
+    jobid: 7
+    wildcards: sample=sonpaired_S3
+
+[Tue Nov  3 14:47:38 2020]
+Finished job 7.
+7 of 15 steps (47%) done
+
+[Tue Nov  3 14:47:38 2020]
+rule bqsr:
+    input: mark_duplicates/sonpaired_S3.bam, /userdata/safal/data/ref_genome/ref_dbsnp.vcf.idx, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa
+    output: bqsr/sonpaired_S3_recal.table
+    log: logs/bqsr/sonpaired_S3.log
+    jobid: 8
+    wildcards: sample=sonpaired_S3
+
+[Tue Nov  3 14:47:40 2020]
+Finished job 5.
+8 of 15 steps (53%) done
+
+[Tue Nov  3 14:47:40 2020]
+rule bqsr:
+    input: mark_duplicates/motherpaired_S2.bam, /userdata/safal/data/ref_genome/ref_dbsnp.vcf.idx, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa
+    output: bqsr/motherpaired_S2_recal.table
+    log: logs/bqsr/motherpaired_S2.log
+    jobid: 6
+    wildcards: sample=motherpaired_S2
+
+[Tue Nov  3 14:47:43 2020]
+Finished job 8.
+9 of 15 steps (60%) done
+
+[Tue Nov  3 14:47:43 2020]
+rule apply_bqsr:
+    input: /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa, mark_duplicates/sonpaired_S3.bam, bqsr/sonpaired_S3_recal.table
+    output: bqsr/sonpaired_S3_bqsr_output.bam
+    log: logs/apply_bqsr/sonpaired_S3.log
+    jobid: 4
+    wildcards: sample=sonpaired_S3
+
+[Tue Nov  3 14:47:45 2020]
+Finished job 6.
+10 of 15 steps (67%) done
+
+[Tue Nov  3 14:47:45 2020]
+rule apply_bqsr:
+    input: /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa, mark_duplicates/motherpaired_S2.bam, bqsr/motherpaired_S2_recal.table
+    output: bqsr/motherpaired_S2_bqsr_output.bam
+    log: logs/apply_bqsr/motherpaired_S2.log
+    jobid: 3
+    wildcards: sample=motherpaired_S2
+
+[Tue Nov  3 14:47:48 2020]
+Finished job 4.
+11 of 15 steps (73%) done
+
+[Tue Nov  3 14:47:48 2020]
+rule haplotype_caller:
+    input: /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa, bqsr/sonpaired_S3_bqsr_output.bam, /userdata/safal/sample_SR/interval.bed
+    output: variant/sonpaired_S3_autosomes.g.vcf.gz
+    log: logs/haplotype_caller/sonpaired_S3.log
+    jobid: 2
+    wildcards: sample=sonpaired_S3
+
+[Tue Nov  3 14:47:49 2020]
+Finished job 3.
+12 of 15 steps (80%) done
+
+[Tue Nov  3 14:47:49 2020]
+rule haplotype_caller:
+    input: /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa, bqsr/motherpaired_S2_bqsr_output.bam, /userdata/safal/sample_SR/interval.bed
+    output: variant/motherpaired_S2_autosomes.g.vcf.gz
+    log: logs/haplotype_caller/motherpaired_S2.log
+    jobid: 1
+    wildcards: sample=motherpaired_S2
+
+[Tue Nov  3 15:13:44 2020]
+Finished job 2.
+13 of 15 steps (87%) done
+[Tue Nov  3 15:13:55 2020]
+Finished job 1.
+14 of 15 steps (93%) done
+
+[Tue Nov  3 15:13:55 2020]
+localrule all:
+    input: variant/motherpaired_S2_autosomes.g.vcf.gz, variant/sonpaired_S3_autosomes.g.vcf.gz
+    jobid: 0
+
+[Tue Nov  3 15:13:55 2020]
+Finished job 0.
+15 of 15 steps (100%) done
+Complete log: /userdata/safal/tutorial/pipeline/new/.snakemake/log/2020-11-03T144718.605519.snakemake.log

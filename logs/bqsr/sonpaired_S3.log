@@ -1,0 +1,66 @@
+01:45:31.012 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/software/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar!/com/intel/gkl/native/libgkl_compression.so
+Nov 04, 2020 1:45:32 AM shaded.cloud_nio.com.google.auth.oauth2.ComputeEngineCredentials runningOnComputeEngine
+INFO: Failed to detect whether we are running on Google Compute Engine.
+01:45:32.838 INFO  BaseRecalibrator - ------------------------------------------------------------
+01:45:32.838 INFO  BaseRecalibrator - The Genome Analysis Toolkit (GATK) v4.1.2.0
+01:45:32.839 INFO  BaseRecalibrator - For support and documentation go to https://software.broadinstitute.org/gatk/
+01:45:32.839 INFO  BaseRecalibrator - Executing as safal@headnode.public on Linux v3.10.0-693.5.2.el7.x86_64 amd64
+01:45:32.839 INFO  BaseRecalibrator - Java runtime: OpenJDK 64-Bit Server VM v1.8.0_265-b11
+01:45:32.839 INFO  BaseRecalibrator - Start Date/Time: November 4, 2020 1:45:30 AM IST
+01:45:32.839 INFO  BaseRecalibrator - ------------------------------------------------------------
+01:45:32.839 INFO  BaseRecalibrator - ------------------------------------------------------------
+01:45:32.840 INFO  BaseRecalibrator - HTSJDK Version: 2.19.0
+01:45:32.840 INFO  BaseRecalibrator - Picard Version: 2.19.0
+01:45:32.840 INFO  BaseRecalibrator - HTSJDK Defaults.COMPRESSION_LEVEL : 2
+01:45:32.840 INFO  BaseRecalibrator - HTSJDK Defaults.USE_ASYNC_IO_READ_FOR_SAMTOOLS : false
+01:45:32.840 INFO  BaseRecalibrator - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_SAMTOOLS : true
+01:45:32.840 INFO  BaseRecalibrator - HTSJDK Defaults.USE_ASYNC_IO_WRITE_FOR_TRIBBLE : false
+01:45:32.840 INFO  BaseRecalibrator - Deflater: IntelDeflater
+01:45:32.840 INFO  BaseRecalibrator - Inflater: IntelInflater
+01:45:32.840 INFO  BaseRecalibrator - GCS max retries/reopens: 20
+01:45:32.840 INFO  BaseRecalibrator - Requester pays: disabled
+01:45:32.840 INFO  BaseRecalibrator - Initializing engine
+WARNING: BAM index file /userdata/safal/tutorial/pipeline/new/result/mark_duplicates/sonpaired_S3.bai is older than BAM /userdata/safal/tutorial/pipeline/new/result/mark_duplicates/sonpaired_S3.bam
+01:45:33.141 INFO  FeatureManager - Using codec VCFCodec to read file file:///userdata/safal/data/ref_genome/ref_dbsnp.vcf
+01:45:33.281 INFO  BaseRecalibrator - Done initializing engine
+01:45:33.284 INFO  BaseRecalibrationEngine - The covariates being used here: 
+01:45:33.285 INFO  BaseRecalibrationEngine - 	ReadGroupCovariate
+01:45:33.285 INFO  BaseRecalibrationEngine - 	QualityScoreCovariate
+01:45:33.285 INFO  BaseRecalibrationEngine - 	ContextCovariate
+01:45:33.285 INFO  BaseRecalibrationEngine - 	CycleCovariate
+01:45:33.296 INFO  ProgressMeter - Starting traversal
+01:45:33.296 INFO  ProgressMeter -        Current Locus  Elapsed Minutes       Reads Processed     Reads/Minute
+01:45:33.541 INFO  BaseRecalibrator - 294 read(s) filtered by: ((((((MappingQualityNotZeroReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter) AND NotDuplicateReadFilter) AND PassesVendorQualityCheckReadFilter) AND WellformedReadFilter)
+  294 read(s) filtered by: (((((MappingQualityNotZeroReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter) AND NotDuplicateReadFilter) AND PassesVendorQualityCheckReadFilter)
+      294 read(s) filtered by: ((((MappingQualityNotZeroReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter) AND NotDuplicateReadFilter)
+          290 read(s) filtered by: (((MappingQualityNotZeroReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter) AND NotSecondaryAlignmentReadFilter)
+              290 read(s) filtered by: ((MappingQualityNotZeroReadFilter AND MappingQualityAvailableReadFilter) AND MappedReadFilter)
+                  290 read(s) filtered by: (MappingQualityNotZeroReadFilter AND MappingQualityAvailableReadFilter)
+                      290 read(s) filtered by: MappingQualityNotZeroReadFilter 
+          4 read(s) filtered by: NotDuplicateReadFilter 
+
+01:45:33.542 INFO  ProgressMeter -             unmapped              0.0                   347          85327.9
+01:45:33.542 INFO  ProgressMeter - Traversal complete. Processed 347 total reads in 0.0 minutes.
+01:45:33.612 INFO  BaseRecalibrator - Calculating quantized quality scores...
+01:45:33.623 INFO  BaseRecalibrator - Writing recalibration report...
+01:45:34.054 INFO  BaseRecalibrator - ...done!
+01:45:34.054 INFO  BaseRecalibrator - Shutting down engine
+[November 4, 2020 1:45:34 AM IST] org.broadinstitute.hellbender.tools.walkers.bqsr.BaseRecalibrator done. Elapsed time: 0.05 minutes.
+Runtime.totalMemory()=2112356352
+/software/gatk-4.1.2.0/gatk:80: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if len(args) is 0 or (len(args) is 1 and (args[0] == "--help" or args[0] == "-h")):
+/software/gatk-4.1.2.0/gatk:80: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if len(args) is 0 or (len(args) is 1 and (args[0] == "--help" or args[0] == "-h")):
+/software/gatk-4.1.2.0/gatk:117: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if len(args) is 1 and args[0] == "--list":
+/software/gatk-4.1.2.0/gatk:308: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if call(["gsutil", "-q", "stat", gcsjar]) is 0:
+/software/gatk-4.1.2.0/gatk:312: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if call(["gsutil", "cp", jar, gcsjar]) is 0:
+/software/gatk-4.1.2.0/gatk:467: SyntaxWarning: "is not" with a literal. Did you mean "!="?
+  if not len(properties) is 0:
+/software/gatk-4.1.2.0/gatk:471: SyntaxWarning: "is not" with a literal. Did you mean "!="?
+  if not len(filesToAdd) is 0:
+Using GATK jar /software/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar
+Running:
+    java -Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=2 -Xmx50G -jar /software/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar BaseRecalibrator -R /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa --known-sites /userdata/safal/data/ref_genome/ref_dbsnp.vcf --tmp-dir /tmp/ -I result/mark_duplicates/sonpaired_S3.bam -O result/bqsr/sonpaired_S3_recal.table
