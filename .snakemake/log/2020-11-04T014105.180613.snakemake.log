@@ -1,0 +1,2 @@
+SyntaxError in line 99 of /userdata/safal/tutorial/pipeline/new/Snakefile:
+Unexpected keyword pre in rule definition (Snakefile, line 99)

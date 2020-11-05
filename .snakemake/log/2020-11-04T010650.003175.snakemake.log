@@ -1,0 +1,168 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 64
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	2	apply_bqsr
+	2	bqsr
+	2	bwa_map
+	2	depth
+	2	fastqc
+	2	haplotype_caller
+	2	mark_dup
+	2	samtools_index
+	2	samtools_sort
+	2	stats
+	21
+
+[Wed Nov  4 01:06:50 2020]
+rule bwa_map:
+    input: /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa, /userdata/safal/tutorial/pipeline/files/motherpaired_S2_R1_001.fastq, /userdata/safal/tutorial/pipeline/files/motherpaired_S2_R2_001.fastq
+    output: result/alignment/motherpaired_S2_mapped.bam
+    log: logs/bwa_mem/motherpaired_S2.log
+    jobid: 15
+    wildcards: sample=motherpaired_S2
+    threads: 28
+
+
+[Wed Nov  4 01:06:50 2020]
+rule fastqc:
+    input: files/sonpaired_S3_R1_001.fastq, files/sonpaired_S3_R2_001.fastq
+    output: result/fastqc/sonpaired_S3_R1_001_fastqc.html, result/fastqc/sonpaired_S3_R1_001_fastqc.zip, result/fastqc/sonpaired_S3_R2_001_fastqc.html, result/fastqc/sonpaired_S3_R2_001_fastqc.zip
+    jobid: 2
+    wildcards: sample=sonpaired_S3
+
+
+[Wed Nov  4 01:06:50 2020]
+rule fastqc:
+    input: files/motherpaired_S2_R1_001.fastq, files/motherpaired_S2_R2_001.fastq
+    output: result/fastqc/motherpaired_S2_R1_001_fastqc.html, result/fastqc/motherpaired_S2_R1_001_fastqc.zip, result/fastqc/motherpaired_S2_R2_001_fastqc.html, result/fastqc/motherpaired_S2_R2_001_fastqc.zip
+    jobid: 1
+    wildcards: sample=motherpaired_S2
+
+
+[Wed Nov  4 01:06:50 2020]
+rule bwa_map:
+    input: /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.amb, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.ann, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.bwt, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.pac, /userdata/safal/data/ref_genome/masked/GRCh38.p13.genome_masked.fa.sa, /userdata/safal/tutorial/pipeline/files/sonpaired_S3_R1_001.fastq, /userdata/safal/tutorial/pipeline/files/sonpaired_S3_R2_001.fastq
+    output: result/alignment/sonpaired_S3_mapped.bam
+    log: logs/bwa_mem/sonpaired_S3.log
+    jobid: 17
+    wildcards: sample=sonpaired_S3
+    threads: 28
+
+[Wed Nov  4 01:06:53 2020]
+Finished job 17.
+1 of 21 steps (5%) done
+
+[Wed Nov  4 01:06:53 2020]
+rule samtools_sort:
+    input: result/alignment/sonpaired_S3_mapped.bam
+    output: result/alignment/sonpaired_S3.bam
+    log: logs/samtools_sort/sonpaired_S3.log
+    jobid: 11
+    wildcards: sample=sonpaired_S3
+    threads: 4
+
+Removing temporary output file result/alignment/sonpaired_S3_mapped.bam.
+[Wed Nov  4 01:06:53 2020]
+Finished job 11.
+2 of 21 steps (10%) done
+
+[Wed Nov  4 01:06:53 2020]
+rule samtools_index:
+    input: result/alignment/sonpaired_S3.bam
+    output: result/alignment/sonpaired_S3.bam.bai
+    log: logs/samtools_index/sonpaired_S3.log
+    jobid: 18
+    wildcards: sample=sonpaired_S3
+    threads: 4
+
+
+[Wed Nov  4 01:06:53 2020]
+rule depth:
+    input: result/alignment/sonpaired_S3.bam
+    output: result/report/depth/sonpaired_S3.mosdepth.summary.txt
+    jobid: 6
+    wildcards: sample=sonpaired_S3
+    threads: 4
+
+[Wed Nov  4 01:06:53 2020]
+Finished job 18.
+3 of 21 steps (14%) done
+
+[Wed Nov  4 01:06:53 2020]
+rule mark_dup:
+    input: result/alignment/sonpaired_S3.bam, result/alignment/sonpaired_S3.bam.bai
+    output: result/mark_duplicates/sonpaired_S3.bam, result/mark_duplicates/sonpaired_S3_metrics.txt
+    log: logs/mark_dup/sonpaired_S3.log
+    jobid: 12
+    wildcards: sample=sonpaired_S3
+
+[Wed Nov  4 01:06:54 2020]
+Finished job 15.
+4 of 21 steps (19%) done
+
+[Wed Nov  4 01:06:54 2020]
+rule samtools_sort:
+    input: result/alignment/motherpaired_S2_mapped.bam
+    output: result/alignment/motherpaired_S2.bam
+    log: logs/samtools_sort/motherpaired_S2.log
+    jobid: 9
+    wildcards: sample=motherpaired_S2
+    threads: 4
+
+Removing temporary output file result/alignment/motherpaired_S2_mapped.bam.
+[Wed Nov  4 01:06:54 2020]
+Finished job 9.
+5 of 21 steps (24%) done
+
+[Wed Nov  4 01:06:54 2020]
+rule depth:
+    input: result/alignment/motherpaired_S2.bam
+    output: result/report/depth/motherpaired_S2.mosdepth.summary.txt
+    jobid: 5
+    wildcards: sample=motherpaired_S2
+    threads: 4
+
+
+[Wed Nov  4 01:06:54 2020]
+rule samtools_index:
+    input: result/alignment/motherpaired_S2.bam
+    output: result/alignment/motherpaired_S2.bam.bai
+    log: logs/samtools_index/motherpaired_S2.log
+    jobid: 16
+    wildcards: sample=motherpaired_S2
+    threads: 4
+
+[Wed Nov  4 01:06:54 2020]
+Error in rule depth:
+    jobid: 5
+    output: result/report/depth/motherpaired_S2.mosdepth.summary.txt
+    shell:
+        mosdepth -t 4 result/report/depth/motherpaired_S2.mosdepth.summary.txt result/alignment/motherpaired_S2.bam
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+[Wed Nov  4 01:06:54 2020]
+Finished job 16.
+6 of 21 steps (29%) done
+[Wed Nov  4 01:06:55 2020]
+Finished job 2.
+7 of 21 steps (33%) done
+[Wed Nov  4 01:06:56 2020]
+Finished job 1.
+8 of 21 steps (38%) done
+[Wed Nov  4 01:07:10 2020]
+Finished job 12.
+9 of 21 steps (43%) done
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 92 of /userdata/safal/tutorial/pipeline/new/Snakefile:
+Job completed successfully, but some output files are missing. Missing files after 5 seconds:
+result/report/depth/sonpaired_S3.mosdepth.summary.txt
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+  File "/userdata/safal/Tools/miniconda3/envs/new/lib/python3.8/site-packages/snakemake/executors/__init__.py", line 544, in handle_job_success
+  File "/userdata/safal/Tools/miniconda3/envs/new/lib/python3.8/site-packages/snakemake/executors/__init__.py", line 225, in handle_job_success
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /userdata/safal/tutorial/pipeline/new/.snakemake/log/2020-11-04T010650.003175.snakemake.log

@@ -1,0 +1,6 @@
+samples:
+        set1:
+        - fatherpaired_S1
+        set2:
+        - motherpaired_S2
+        - sonpaired_S3

@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 91 of /userdata/safal/tutorial/pipeline/new/Snakefile:
+Missing input files for rule haplotype_caller:
+bqsr/motherpaired_S2_bqsr_sorted.bam

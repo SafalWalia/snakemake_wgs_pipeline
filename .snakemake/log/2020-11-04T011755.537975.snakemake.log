@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 4 of /userdata/safal/tutorial/pipeline/new/Snakefile:
+Missing input files for rule all:
+result/report/depth/motherpaired_S2.mosdepth.summary.txt
+result/report/depth/sonpaired_S3.mosdepth.summary.txt
