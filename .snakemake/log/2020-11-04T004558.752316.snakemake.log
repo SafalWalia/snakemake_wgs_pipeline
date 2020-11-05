@@ -1,7 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 4 of /userdata/safal/tutorial/pipeline/new/Snakefile:
-Missing input files for rule all:
-fastqc/sonpaired_S3_R2_001_fastqc.html
-fastqc/motherpaired_S2_R1_001_fastqc.html
-fastqc/motherpaired_S2_R2_001_fastqc.html
-fastqc/sonpaired_S3_R1_001_fastqc.html
